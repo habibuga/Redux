@@ -6,3 +6,11 @@
  * export default combinedReducer;
  */
 
+import { combineReducers } from "redux";
+
+// counterReducer
+import counter from './counter';
+
+const combinedReducers = combineReducers({ counter });
+
+export default combinedReducers;

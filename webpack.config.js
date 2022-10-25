@@ -1,5 +1,5 @@
 const path = require("path");
-const entryPath = "01_Dzien_1/01_Podstawy_zdarzen/01_Zadanie_1";
+const entryPath = "02_Dzien_2-3/01_Combine_Reducers/01_Aplikacja_bankowa";
 
 module.exports = {
   entry: `./${entryPath}/js/app.js`,

@@ -1,5 +1,7 @@
 // Tu powinny się znaleźć odpowiednie importy
 
+import { withdrawMoney, depositMoney } from "./redux/actions/bankActions";
+
 const bankApp = {
 
   start(rootElement) {
@@ -39,8 +41,27 @@ const bankApp = {
   // Następnie zapisać się na zmiany i na każdą z nich
   // zamienić wartość tekstu w elemencie `saldoEl` na wartość ze store + PLN
   // np. this.saldoEl.innerText = `wartosc-ze-store PLN`
-  createStore() {
+  createStore(reducerFunction, initialState) {
 
+    let currentState = initialState;
+    let listeners = [];
+
+    return {
+      dispatch(action) {
+        currentState = reducerFunction(currentState, action);
+        listeners.forEach(listener => listener());
+      },
+      getState() {
+        return currentState;
+      },
+      subscribe(listener) {
+        listeners.push(listener);
+
+        return function() {
+          listeners = listeners.filter(currentListener => currentListener !== listener);
+        }
+      }
+    }
   },
 
   // W tej metodzie należy podpiąć pod odpowiednie przyciski event handlery,
