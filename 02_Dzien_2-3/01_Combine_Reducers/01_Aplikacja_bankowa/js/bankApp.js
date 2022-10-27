@@ -51,13 +51,8 @@ const bankApp = {
       this.saldoEl.innerText = `${store.getState().bank} PLN`;
     });
 
-    this.withdrawEl.addEventListener('click', () => {
-          {store.getState().bank - this.inputEl.value >= 0 && store.dispatch(withdrawMoney(Number(this.inputEl.value)))}
-    })
-
-    this.depositEl.addEventListener('click', () => {
-      store.dispatch(depositMoney(Number(this.inputEl.value)))
-    })
+    this.dispatch = store.dispatch
+    this.getState = store.getState
 
   },
 
@@ -67,7 +62,13 @@ const bankApp = {
   // this.withdrawEl
   // this.depositEl
   applyHandlers() {
+    this.withdrawEl.addEventListener('click', () => {
+      {this.getState().bank - this.inputEl.value >= 0 && this.dispatch(withdrawMoney(Number(this.inputEl.value)))}
+    })
 
+    this.depositEl.addEventListener('click', () => {
+      this.dispatch(depositMoney(Number(this.inputEl.value)))
+    })
   }
 };
 
