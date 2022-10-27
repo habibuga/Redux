@@ -1,13 +1,15 @@
 // Tu powinny się znaleźć odpowiednie importy
+import {createStore} from "redux";
 
+import reducer from './redux/reducers/index';
 import { withdrawMoney, depositMoney } from "./redux/actions/bankActions";
 
 const bankApp = {
 
   start(rootElement) {
     this.createUI(rootElement);
-    this.createStore();
     this.collectRefs();
+    this.createStore();
     this.applyHandlers();
   },
 
@@ -17,7 +19,7 @@ const bankApp = {
     this.rootElement = rootElement;
     this.rootElement.innerHTML = `
       <div>
-        <h1>Saldo:<span>0</span></h1>
+        <h1>Saldo:<span>0 PLN</span></h1>
 
         <div>
           $: <input type="number" id="money" />
@@ -41,27 +43,22 @@ const bankApp = {
   // Następnie zapisać się na zmiany i na każdą z nich
   // zamienić wartość tekstu w elemencie `saldoEl` na wartość ze store + PLN
   // np. this.saldoEl.innerText = `wartosc-ze-store PLN`
-  createStore(reducerFunction, initialState) {
+  createStore() {
 
-    let currentState = initialState;
-    let listeners = [];
+    const store = createStore(reducer);
 
-    return {
-      dispatch(action) {
-        currentState = reducerFunction(currentState, action);
-        listeners.forEach(listener => listener());
-      },
-      getState() {
-        return currentState;
-      },
-      subscribe(listener) {
-        listeners.push(listener);
+    const unsubscribe = store.subscribe(() => {
+      this.saldoEl.innerText = `${store.getState().bank} PLN`;
+    });
 
-        return function() {
-          listeners = listeners.filter(currentListener => currentListener !== listener);
-        }
-      }
-    }
+    this.withdrawEl.addEventListener('click', () => {
+          {store.getState().bank - this.inputEl.value >= 0 && store.dispatch(withdrawMoney(Number(this.inputEl.value)))}
+    })
+
+    this.depositEl.addEventListener('click', () => {
+      store.dispatch(depositMoney(Number(this.inputEl.value)))
+    })
+
   },
 
   // W tej metodzie należy podpiąć pod odpowiednie przyciski event handlery,

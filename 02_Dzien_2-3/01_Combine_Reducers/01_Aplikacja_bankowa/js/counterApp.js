@@ -1,12 +1,12 @@
 import {createStore} from "redux";
 import {increment, decrement} from "./redux/actions/counterActions";
-import counter from "./redux/reducers/counter";
+import reducer from "./redux/reducers/index";
 
 export default function () {
-  const {dispatch, subscribe, getState} = createStore(counter);
+  const {dispatch, subscribe, getState} = createStore(reducer);
 
   const unsubscribe = subscribe(() => {
-    console.log(`from subscribe ${getState()}`);
+    console.log(`from subscribe ${getState().counter}`);
   });
 
   dispatch(increment(5));
@@ -15,5 +15,5 @@ export default function () {
   unsubscribe();
 
   dispatch(decrement(2));
-  console.log(getState());
+  console.log(getState().counter);
 }
