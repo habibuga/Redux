@@ -1,8 +1,11 @@
+import store from '../redux/store'
+import { increment, decrement } from '../redux/actions';
+
 class Counter {
   constructor(rootElement) {
     this.createUI(rootElement);
-    this.reduxConnect();
     this.collectRefs();
+    this.reduxConnect();
     this.applyHandlers();
   }
 
@@ -25,9 +28,24 @@ class Counter {
     this.counterIncrement = this.rootElement.querySelector("#counter-increment");
   }
 
-  reduxConnect() {}
+  reduxConnect() {
+    const unsubscribe = store.subscribe(() => {
+      this.counterValue.innerText = store.getState().counter
+    });
 
-  applyHandlers() {}
+    this.dispatch = store.dispatch;
+    this.getState = store.getState();
+  }
+
+  applyHandlers() {
+    this.counterDecrement.addEventListener('click', () => {
+      this.dispatch(decrement())
+    })
+
+    this.counterIncrement.addEventListener('click', () => {
+      this.dispatch(increment())
+    })
+  }
 }
 
 export default Counter;
