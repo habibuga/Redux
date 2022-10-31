@@ -3,11 +3,11 @@ import ArticleInput from "./ArticleInput";
 import UsersList from "./UsersList";
 import ArticlesList from "./ArticlesList";
 
-const Articles = ({onAdd, users, articles}) => (
+const Articles = ({onAdd, onRemove, users, articles}) => (
   <div>
     <ArticleInput users={users} onArticleAdd={onAdd}/>
     <UsersList users={users}/>
-    <ArticlesList articles={articles}/>
+    <ArticlesList articles={articles} onArticleRemove={onRemove}/>
   </div>
 );
 

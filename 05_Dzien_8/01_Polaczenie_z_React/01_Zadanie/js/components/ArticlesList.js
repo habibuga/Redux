@@ -1,8 +1,8 @@
 import React from "react";
 
-const ArticlesList = ({articles = []}) => (
+const ArticlesList = ({articles = [], onArticleRemove}) => (
   <ol>
-    {articles.map((title) => <li key={title}>{title}</li>)}
+    {articles.map((title, index) => <li key={index}>{title}<button onClick={()=> {onArticleRemove(index)}}>Usuń</button></li>)}
   </ol>
 );
 
