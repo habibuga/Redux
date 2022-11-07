@@ -1,15 +1,15 @@
 // Tutaj zaimplementuj akcje
 
 const DEPLOYED = "DEPLOYED";
-const LAUNCHED = "LAUNCHED";
 
-const startCount
+const deploy = () => (dispatch) => {
 
-const deploy = () => ({
+    const newInt = setInterval(() => {dispatch(deployRocket())}, 1000)
+}
+
+const deployRocket = (payload) => ({
     type: DEPLOYED,
-})
+    payload: payload
+});
 
-const launch = () => ({
-    type: LAUNCHED,
-})
-
+export { deploy, DEPLOYED };
