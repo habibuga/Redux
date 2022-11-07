@@ -1,4 +1,12 @@
-// export const ADD_PRODUCT = "ADD_PRODUCT";
-// export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
+export const ADD_TODO = 'ADD_TODO';
+export const TOGGLE_TODO = 'TOGGLE_TODO';
 
-// należy dodać kreatory akcji i je eksportować
+export const addTodo = (payload) => ({
+  type: ADD_TODO,
+  payload,
+});
+
+export const toggleTodo = (payload) => ({
+  type: TOGGLE_TODO,
+  payload,
+});
