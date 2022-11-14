@@ -23,7 +23,7 @@ const SingleProduct = ({id, index, number, onChange, onClose}) => {
                   <select onChange={(e) => onChange(index, e.target.value)} value={id}>
                     <option>Wybierz...</option>
                     {fakeProducts.map(product => (
-                      <option value={product.id}>{product.name}</option>
+                      <option value={product.id} key={product.id}>{product.name}</option>
                     ))}
                   </select>
                 </span>

@@ -10,8 +10,6 @@ const initialState = [
     { id: 7, name: "Przyprawa curry" },
 ];
 
-let i = 10;
-
 const products = (state=initialState, {type, payload}) => {
     switch(type) {
         case ADD_PRODUCT: {
