@@ -4,7 +4,7 @@ import React from "react";
 import {connect} from "react-redux";
 
 import Counter from "../components/Counter";
-import {startCounter, pause} from "../redux/actions";
+import {startCounter, pause, set} from "../redux/actions";
 
 const mapStateToProps = (state, ownProps) => ({
     isCounting: state.counter.isCounting,

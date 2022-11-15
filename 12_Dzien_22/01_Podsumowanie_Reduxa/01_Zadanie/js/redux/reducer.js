@@ -31,7 +31,7 @@ const counter = (state=initialState, {type, payload}) => {
         case PAUSE: {
             return {
                 isCounting: false,
-                ...state
+                value: state.value
             }
     }
         default: {
