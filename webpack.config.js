@@ -1,5 +1,5 @@
 const path = require("path");
-const entryPath = "12_Dzien_22/01_Podsumowanie_Reduxa/01_Zadanie";
+const entryPath = "11_Dzien_18-21/01_Redux_Zaawansowany/01_Zadanie";
 
 module.exports = {
   entry: `./${entryPath}/js/app.js`,

@@ -78,12 +78,13 @@ class AddRecipe extends Component {
         <div className="box">
           {this.state.products.map((product, i) => (
             <SingleProduct
-              key={product.key}
-              id={product.id ? product.id : ""}
-              index={product.key}
-              number={i}
+              key={Number(product.key)}
+              id={product.id ? Number(product.id) : ""}
+              index={Number(product.key)}
+              number={Number(i)}
               onChange={this.handleProductChoose}
-              onClose={this.handleProductDelete}/>
+              onClose={this.handleProductDelete}
+              products={this.props.products}/>
           ))}
 
           <div className="field">
